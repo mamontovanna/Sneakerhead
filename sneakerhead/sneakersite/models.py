@@ -23,8 +23,7 @@ class jordan(models.Model):
     size44=models.BooleanField(verbose_name="44")
     size45=models.BooleanField(verbose_name="45")
     image=models.ImageField(upload_to="images/jordan/", blank=True, verbose_name='Изображение')
-    def __str__(self):
-        return self.name
+    
 
 class nike(models.Model):
     name=models.CharField(max_length=200, verbose_name="Название модели")
@@ -39,8 +38,7 @@ class nike(models.Model):
     size44=models.BooleanField(verbose_name="44")
     size45=models.BooleanField(verbose_name="45")
     image=models.ImageField(upload_to="images/nike/", blank=True, verbose_name='Изображение')
-    def __str__(self):
-        return self.name
+   
 
 class adidas(models.Model):
     name=models.CharField(max_length=200, verbose_name="Название модели")
@@ -55,15 +53,6 @@ class adidas(models.Model):
     size44=models.BooleanField(verbose_name="44")
     size45=models.BooleanField(verbose_name="45")
     image=models.ImageField(upload_to="images/adidas/", blank=True, verbose_name='Изображение')
-    def __str__(self):
-        return self.name
     
-class cart_model(models.Model):
-    userid=models.ForeignKey(User, on_delete=models.CASCADE)
-    sneakerid=models.ForeignKey(nike, on_delete=models.CASCADE)
-
-    def cart_add(userid, sneakerid, self):
-        cart=cart_model(sneakerid_id=sneakerid, userid_id=userid)
-        cart.save()
-
+  
     

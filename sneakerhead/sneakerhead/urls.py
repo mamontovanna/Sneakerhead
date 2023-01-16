@@ -21,6 +21,7 @@ from sneakersite.views import main
 from sneakersite.views import auth
 from sneakersite.views import register
 from sneakersite.views import *
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('main/', main),
@@ -32,5 +33,5 @@ urlpatterns = [
     path('nike/<int:post_id>', nike_card),
     path('jordan/<int:post_id>', jordan_card),
     path('adidas/<int:post_id>', adidas_card),
-    path('cart/', cart_view)
+    path('cart/', get_cart)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

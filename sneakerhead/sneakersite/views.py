@@ -3,8 +3,14 @@ from sneakersite.models import *
 from django.contrib.auth import authenticate
 from django.http import HttpResponse#вывод чего-то
 from django.contrib.auth.models import User
-
+from cart.cart import Cart
 def main(request):
+    if request.method=='POST':
+        poisk=request.POST
+        nikedata=nike.objects.filter(name=poisk["search"])
+        adidasdata=adidas.objects.filter(name=poisk["search"])
+        jordandata=jordan.objects.filter(name=poisk["search"])
+        return render(request, 'search_result.html', {"nike":nikedata, "adidas":adidasdata, "jordan":jordandata})
     return render(request, 'main_page.html')
 
 def auth(request):
@@ -52,7 +58,19 @@ def adidas_card(request, post_id):
         data=adidas.objects.filter(id=post_id)
         return render(request, 'adidas_card.html',{"dat":data})
 
-def cart_view(request):
-    return render(request,'cart.html')
-    #return render(request, 'nike_card.html')
+
+
+
+def add_to_cart(request, product_id, quantity):
+ product = nike.objects.get(id=product_id)
+ cart  = Cart (request)
+ cart.add(product, product.unit_price, quantity)
+
+def remove_from_cart(request, product_id):
+ product = nike.objects.get(id=product_id)
+ cart  = Cart (request)
+ cart.remove(product)
+
+def get_cart(request):
+ return render (request, 'cart.html', {'cart': Cart (request)})
 # Create your views here.
