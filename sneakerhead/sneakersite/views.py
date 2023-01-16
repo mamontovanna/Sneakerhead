@@ -34,6 +34,12 @@ def register(request):
     return render(request, 'registration.html')
 
 def jordan_view(request):
+    if request.method=='POST':
+        poisk=request.POST
+        nikedata=nike.objects.filter(name=poisk["search"])
+        adidasdata=adidas.objects.filter(name=poisk["search"])
+        jordandata=jordan.objects.filter(name=poisk["search"])
+        return render(request, 'search_result.html', {"nike":nikedata, "adidas":adidasdata, "jordan":jordandata})
     data=jordan.objects.all()
     return render(request, 'jordan.html', {"cards":data})
 def jordan_card(request, post_id):
@@ -43,6 +49,12 @@ def jordan_card(request, post_id):
         return render(request, 'jordan_card.html',{"dat":data})
 
 def Nike(request):
+    if request.method=='POST':
+        poisk=request.POST
+        nikedata=nike.objects.filter(name=poisk["search"])
+        adidasdata=adidas.objects.filter(name=poisk["search"])
+        jordandata=jordan.objects.filter(name=poisk["search"])
+        return render(request, 'search_result.html', {"nike":nikedata, "adidas":adidasdata, "jordan":jordandata})
     data=nike.objects.all()
     return render(request, 'nike.html', {"cards":data})
 def nike_card(request, post_id):
@@ -51,6 +63,12 @@ def nike_card(request, post_id):
         return render(request, 'nike_card.html',{"dat":data})
 
 def Adidas(request):
+    if request.method=='POST':
+        poisk=request.POST
+        nikedata=nike.objects.filter(name=poisk["search"])
+        adidasdata=adidas.objects.filter(name=poisk["search"])
+        jordandata=jordan.objects.filter(name=poisk["search"])
+        return render(request, 'search_result.html', {"nike":nikedata, "adidas":adidasdata, "jordan":jordandata})
     data=adidas.objects.all()
     return render(request, 'adidas.html', {"cards":data})
 def adidas_card(request, post_id):
